@@ -1,0 +1,46 @@
+{
+  "name": "multilevel-bench",
+  "description": "Benchmarks for various databases talked to from node.js",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juliangruber/multilevel-bench.git"
+  },
+  "homepage": "https://github.com/juliangruber/multilevel-bench",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js",
+    "bench": "matcha index.js"
+  },
+  "dependencies": {
+    "matcha": "~0.2.0",
+    "redis": "~0.8.2",
+    "hiredis": "~0.1.14",
+    "rimraf": "~2.1.4",
+    "levelup": "git://github.com/rvagg/node-levelup#0.7-wip",
+    "multilevel": "~2.0.2",
+    "multilevel-http": "0.0.1",
+    "memcached": "~0.2.1",
+    "mongodb": "~1.2.13",
+    "leveled": "~0.4.3",
+    "leveldown": "~0.1.3",
+    "multileveled": "0.0.1",
+    "memdown": "0.0.0"
+  },
+  "devDependencies": {
+    "tap": "*"
+  },
+  "keywords": [
+    "benchmark,",
+    "database,",
+    "leveldb,",
+    "levelup,",
+    "multilevel"
+  ],
+  "author": {
+    "name": "Julian Gruber",
+    "email": "mail@juliangruber.com",
+    "url": "http://juliangruber.com"
+  },
+  "license": "MIT"
+}
