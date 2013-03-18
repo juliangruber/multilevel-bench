@@ -5,6 +5,7 @@ leveldown
 levelup
 leveled
 multilevel
+multilevel-http
 multileveled
 multilevel-fake
 multileveled-fake
