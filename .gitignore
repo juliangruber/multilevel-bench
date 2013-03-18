@@ -1,3 +1,10 @@
 *.sw*
 node_modules
 dump.rdb
+leveldown
+levelup
+leveled
+multilevel
+multileveled
+multilevel-fake
+multileveled-fake
