@@ -4,28 +4,7 @@ var str = {
   small : '12345678901234567890'
 }
 
-suite('MemDOWN', function () {
-  set('type', 'static');
-  set('iterations', 1000);
-
-  var levelup = require('levelup');
-  var MemDOWN = require('memdown');
-  var factory = function (loc) { return new MemDOWN(loc) }
-  var rimraf = require('rimraf');
-
-  rimraf.sync(__dirname + '/levelup');
-  var db = levelup(__dirname + '/levelup', { db : factory });
-
-  var i = 0;
-  bench('set small', function (done) { db.put(i++, str.small, done) });
-  bench('set medium', function (done) { db.put(i++, str.medium, done) });
-  bench('set large', function (done) { db.put(i++, str.large, done) });
-  bench('get large', function (done) { db.get(--i, done) });
-  bench('get medium', function (done) { db.get(--i, done) });
-  bench('get small', function (done) { db.get(--i, done) });
-});
-
-suite('Redis', function () {
+suite('Redis (10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
@@ -42,7 +21,7 @@ suite('Redis', function () {
   bench('get small', function (done) { client.get(--i, done) });
 });
 
-suite('MongoDB', function () {
+suite('MongoDB (1.000x)', function () {
   set('type', 'static');
   set('iterations', 1000);
 
@@ -74,7 +53,7 @@ suite('MongoDB', function () {
   bench('get small', function (done) { collection.findOne({ id:--i }, done) });
 });
 
-suite('Memcached', function () {
+suite('Memcached (10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
@@ -90,7 +69,7 @@ suite('Memcached', function () {
   bench('get small', function (done) { client.get(--i+'', done) });
 });
 
-suite('levelUP', function () {
+suite('levelUP (10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
@@ -109,7 +88,7 @@ suite('levelUP', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('levelDOWN', function () {
+suite('levelDOWN (10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
@@ -131,7 +110,7 @@ suite('levelDOWN', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('leveled', function () {
+suite('leveled (10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
@@ -150,7 +129,7 @@ suite('leveled', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('multilevel', function () {
+suite('multilevel (10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
@@ -178,7 +157,7 @@ suite('multilevel', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('multilevel (fake network)', function () {
+suite('multilevel (fake network, 10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
@@ -200,7 +179,7 @@ suite('multilevel (fake network)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('multileveled', function () {
+suite('multileveled (10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
@@ -228,7 +207,7 @@ suite('multileveled', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('multileveled (fake network)', function () {
+suite('multileveled (fake network, 10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
@@ -250,9 +229,9 @@ suite('multileveled (fake network)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('multilevel-http', function () {
+suite('multilevel-http (1.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 1000);
 
   var multilevel = require('multilevel-http');
   var levelup = require('levelup');
@@ -271,7 +250,28 @@ suite('multilevel-http', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('Memory', function () {
+suite('MemDOWN (1.000x)', function () {
+  set('type', 'static');
+  set('iterations', 1000);
+
+  var levelup = require('levelup');
+  var MemDOWN = require('memdown');
+  var factory = function (loc) { return new MemDOWN(loc) }
+  var rimraf = require('rimraf');
+
+  rimraf.sync(__dirname + '/levelup');
+  var db = levelup(__dirname + '/levelup', { db : factory });
+
+  var i = 0;
+  bench('set small', function (done) { db.put(i++, str.small, done) });
+  bench('set medium', function (done) { db.put(i++, str.medium, done) });
+  bench('set large', function (done) { db.put(i++, str.large, done) });
+  bench('get large', function (done) { db.get(--i, done) });
+  bench('get medium', function (done) { db.get(--i, done) });
+  bench('get small', function (done) { db.get(--i, done) });
+});
+
+suite('Memory (10.000x)', function () {
   set('type', 'static');
   set('iterations', 10000);
 
