@@ -45,12 +45,12 @@ suite('MongoDB (1.000x)', function () {
   })
 
   var i = 0;
-  bench('set small', function (done) { collection.insert({ id:i++, str:str.small }, done) });
-  bench('set medium', function (done) { collection.insert({ id:i++, str:str.medium }, done) });
-  bench('set large', function (done) { collection.insert({ id:i++, str:str.large }, done) });
-  bench('get large', function (done) { collection.findOne({ id:--i }, done) });
-  bench('get medium', function (done) { collection.findOne({ id:--i }, done) });
-  bench('get small', function (done) { collection.findOne({ id:--i }, done) });
+  bench('set small', function (done) { collection.insert({ _id:i++, str:str.small }, done) });
+  bench('set medium', function (done) { collection.insert({ _id:i++, str:str.medium }, done) });
+  bench('set large', function (done) { collection.insert({ _id:i++, str:str.large }, done) });
+  bench('get large', function (done) { collection.findOne({ _id:--i }, done) });
+  bench('get medium', function (done) { collection.findOne({ _id:--i }, done) });
+  bench('get small', function (done) { collection.findOne({ _id:--i }, done) });
 });
 
 suite('Memcached (10.000x)', function () {
@@ -67,6 +67,28 @@ suite('Memcached (10.000x)', function () {
   bench('get large', function (done) { client.get(--i+'', done) });
   bench('get medium', function (done) { client.get(--i+'', done) });
   bench('get small', function (done) { client.get(--i+'', done) });
+});
+
+suite('Medea (10.000x)', function () {
+  set('type', 'static');
+  set('iterations', 10000);
+
+  var Medea = require('medea');
+  var medea = new Medea();
+  var rimraf = require('rimraf');
+
+  rimraf.sync(__dirname + '/medea');
+  medea.open(__dirname + '/medea', function (err) {
+    if (err) throw err;
+  })
+
+  var i = 0;
+  bench('set small', function (done) { medea.put(''+i++, str.small, done) });
+  bench('set medium', function (done) { medea.put(''+i++, str.medium, done) });
+  bench('set large', function (done) { medea.put(''+i++, str.large, done) });
+  bench('get large', function (done) { medea.get(--i+'', done) });
+  bench('get medium', function (done) { medea.get(--i+'', done) });
+  bench('get small', function (done) { medea.get(--i+'', done) });
 });
 
 suite('levelUP (10.000x)', function () {

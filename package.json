@@ -1,7 +1,7 @@
 {
   "name": "multilevel-bench",
   "description": "Benchmarks for various databases talked to from node.js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/juliangruber/multilevel-bench.git"
@@ -25,7 +25,8 @@
     "leveled": "~0.4.3",
     "leveldown": "~0.1.3",
     "multileveled": "0.0.1",
-    "memdown": "0.0.0"
+    "memdown": "0.0.0",
+    "medea": "git://github.com/argo/medea.git"
   },
   "devDependencies": {
     "tap": "*"
