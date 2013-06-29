@@ -27,8 +27,8 @@
     "multileveled": "0.0.1",
     "memdown": "0.0.0",
     "medea": "git://github.com/argo/medea.git",
-    "tingodb":"",
-    "temp":""
+    "tingodb": "~0.1.10",
+    "temp": "~0.5.0"
   },
   "devDependencies": {
     "tap": "*"
