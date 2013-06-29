@@ -316,18 +316,18 @@ suite('TingoDB (1.000x)', function () {
   var Db = require('tingodb')({}).Db;
   var collection;
 
-  var db = new Db(temp.mkdirSync("tingodb"),{});
+  var db = new Db(temp.mkdirSync("tingodb"), {});
 
   db.collection('test', function (err, _collection) {
-	if (err) throw err;
+    if (err) throw err;
 	  collection = _collection;
-  })
+  });
 
   var i = 0;
-  bench('set small', function (done) { collection.insert({ _id:i++, str:str.small }, done) });
-  bench('set medium', function (done) { collection.insert({ _id:i++, str:str.medium }, done) });
-  bench('set large', function (done) { collection.insert({ _id:i++, str:str.large }, done) });
-  bench('get large', function (done) { collection.findOne({ _id:--i }, done) });
-  bench('get medium', function (done) { collection.findOne({ _id:--i }, done) });
-  bench('get small', function (done) { collection.findOne({ _id:--i }, done) });
+  bench('set small', function (done) { collection.insert({ _id: i++, str: str.small }, done) });
+  bench('set medium', function (done) { collection.insert({ _id: i++, str: str.medium }, done) });
+  bench('set large', function (done) { collection.insert({ _id: i++, str: str.large }, done) });
+  bench('get large', function (done) { collection.findOne({ _id: --i }, done) });
+  bench('get medium', function (done) { collection.findOne({ _id: --i }, done) });
+  bench('get small', function (done) { collection.findOne({ _id: --i }, done) });
 });
