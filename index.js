@@ -4,9 +4,9 @@ var str = {
   small : '12345678901234567890'
 }
 
-suite('Redis (10.000x)', function () {
+suite('Redis (100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var redis = require('redis');
   var client = redis.createClient();
@@ -45,17 +45,17 @@ suite('MongoDB (1.000x)', function () {
   })
 
   var i = 0;
-  bench('set small', function (done) { collection.insert({ _id:i++, str:str.small }, done) });
-  bench('set medium', function (done) { collection.insert({ _id:i++, str:str.medium }, done) });
-  bench('set large', function (done) { collection.insert({ _id:i++, str:str.large }, done) });
-  bench('get large', function (done) { collection.findOne({ _id:--i }, done) });
-  bench('get medium', function (done) { collection.findOne({ _id:--i }, done) });
-  bench('get small', function (done) { collection.findOne({ _id:--i }, done) });
+  bench('set small', function (done) { collection.insert({ _id: i++, str: str.small }, done) });
+  bench('set medium', function (done) { collection.insert({ _id: i++, str: str.medium }, done) });
+  bench('set large', function (done) { collection.insert({ _id: i++, str: str.large }, done) });
+  bench('get large', function (done) { collection.findOne({ _id: --i }, done) });
+  bench('get medium', function (done) { collection.findOne({ _id: --i }, done) });
+  bench('get small', function (done) { collection.findOne({ _id: --i }, done) });
 });
 
-suite('Memcached (10.000x)', function () {
+suite('Memcached (100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var Memcached = require('memcached');
   var client = new Memcached('localhost:11211');
@@ -69,9 +69,9 @@ suite('Memcached (10.000x)', function () {
   bench('get small', function (done) { client.get(--i+'', done) });
 });
 
-suite('Medea (10.000x)', function () {
+suite('Medea (100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var Medea = require('medea');
   var medea = new Medea();
@@ -91,9 +91,9 @@ suite('Medea (10.000x)', function () {
   bench('get small', function (done) { medea.get(--i+'', done) });
 });
 
-suite('levelUP (10.000x)', function () {
+suite('levelUP (100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var levelup = require('levelup');
   var rimraf = require('rimraf');
@@ -110,9 +110,9 @@ suite('levelUP (10.000x)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('levelDOWN (10.000x)', function () {
+suite('levelDOWN (100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var leveldown = require('leveldown');
   var rimraf = require('rimraf');
@@ -132,9 +132,9 @@ suite('levelDOWN (10.000x)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('leveled (10.000x)', function () {
+suite('leveled (100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var leveled = require('leveled');
   var rimraf = require('rimraf');
@@ -151,9 +151,9 @@ suite('leveled (10.000x)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('multilevel (10.000x)', function () {
+suite('multilevel (100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var net = require('net');
   var multilevel = require('multilevel');
@@ -179,9 +179,9 @@ suite('multilevel (10.000x)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('multilevel (fake network, 10.000x)', function () {
+suite('multilevel (fake network, 100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var multilevel = require('multilevel');
   var levelup = require('levelup');
@@ -201,9 +201,9 @@ suite('multilevel (fake network, 10.000x)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('multileveled (10.000x)', function () {
+suite('multileveled (100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var net = require('net');
   var multileveled = require('multileveled');
@@ -229,9 +229,9 @@ suite('multileveled (10.000x)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('multileveled (fake network, 10.000x)', function () {
+suite('multileveled (fake network, 100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var multileveled = require('multileveled');
   var leveled = require('leveled');
@@ -272,9 +272,9 @@ suite('multilevel-http (1.000x)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('MemDOWN (1.000x)', function () {
+suite('MemDOWN (10.000x)', function () {
   set('type', 'static');
-  set('iterations', 1000);
+  set('iterations', 10000);
 
   var levelup = require('levelup');
   var MemDOWN = require('memdown');
@@ -293,9 +293,9 @@ suite('MemDOWN (1.000x)', function () {
   bench('get small', function (done) { db.get(--i, done) });
 });
 
-suite('Memory (10.000x)', function () {
+suite('Memory (100.000x)', function () {
   set('type', 'static');
-  set('iterations', 10000);
+  set('iterations', 100000);
 
   var db = {};
 
@@ -308,9 +308,9 @@ suite('Memory (10.000x)', function () {
   bench('get large', function () { db[--i]+'' });
 });
 
-suite('TingoDB (1.000x)', function () {
+suite('TingoDB (10.000x)', function () {
   set('type', 'static');
-  set('iterations', 1000);
+  set('iterations', 10000);
 
   var temp = require('temp');
   var Db = require('tingodb')({}).Db;
